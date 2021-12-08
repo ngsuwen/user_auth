@@ -10,7 +10,6 @@ require('dotenv').config();
 
 // CONNECT TO MONGOOSE
 const mongoose = require('mongoose');
-const { urlencoded } = require('express');
 
 const PORT = process.env.PORT;
 const DATABASE = process.env.DATABASE;
