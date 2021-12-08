@@ -37,16 +37,5 @@ app.use(
 );
 
 app.use(sessionController)
-
-//check if there is valid session
-app.use((req, res, next) => {
-    console.log(req.session)
-    if (req.session.user) {
-        next()
-    } else {
-        res.redirect('/login')
-    }
-})
-
 app.use(userController)
 app.use(viewController)

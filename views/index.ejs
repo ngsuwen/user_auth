@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <style>
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #069;
+            font-size: 18px;
+        }
+        button {
+            background: none !important;
+            border: none;
+            padding: 0 !important;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #069;
+            font-size: 18px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <% if(user.role==='BASIC'){ %>
+    <% if (!user) { %>
+        <h1>Login Application (mongoose, nodejs) </h1>
+    <% } else if(user.role==='BASIC'){ %>
         <h1>Welcome, <%=user.username%></h1>
-    <% } else { %>
+    <% } else if (user.role==='ADMIN') { %>
         <h1>Welcome, Admin</h1>
     <% } %>
-    <form action='/new'><button>New</button></form>
-    <form action='/login'><button>Login</button></form>
+    <a href='/userpage'>User Page</a> || 
+    <a href='/new'>Admin Page</a> || 
+    <% if (!user) { %>
+        <a href='/login'>Login</a>
+    <% } else { %>
+        <form style='display:inline' action='/?_method=DELETE' method='POST'><button>Logout</button></form>
+    <% } %>
+    <h2 style='padding-top: 5em;'><b>Test Accounts</b></h2>
+    <p><b>[ADMIN] </b>user: admin | password: admin</p>
+    <p><b>[BASIC] </b>user: user1 | password: password</p>
 </body>
 </html>
